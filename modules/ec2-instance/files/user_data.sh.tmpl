@@ -1,0 +1,11 @@
+#!/bin/bash
+apt update -y
+apt install -y python3 python3-pip
+pip3 install flask openai
+
+export OPENAI_API_KEY="${openai_key}"
+cat > ~/app.py <<'EOF'
+${python_app}
+EOF
+
+python3 ~/app.py &
