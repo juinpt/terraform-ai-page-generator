@@ -16,6 +16,7 @@ This project automates the provisioning of an AI-powered web page generator on A
 
 Before deploying the infrastructure, ensure you have the following:
 
+- **Ubuntu**: This setup requires an Ubuntu-based EC2 AMI.
 - **AWS CLI**: Installed and configured with appropriate credentials.
 - **Terraform**: Installed on your local machine.
 - **OpenAI API Key**: An active API key from OpenAI.
@@ -72,12 +73,15 @@ Confirm the action when prompted.
 
 ```
 terraform-ai-page-generator/
+├── ai-page-generator-dockerimage
+│   ├── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── LICENSE
 ├── main.tf
 ├── modules
 │   └── ec2-instance
 │       ├── files
-│       │   ├── app.py
 │       │   └── user_data.sh.tmpl
 │       ├── main.tf
 │       ├── outputs.tf
