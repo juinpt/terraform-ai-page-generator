@@ -3,23 +3,18 @@ module "web_instance" {
   source                 = "./modules/ec2-instance"
   instance_type          = "t2.micro"
   ami                    = "ami-0f415cc2783de6675"
-  vpc_security_group_ids = [aws_security_group.demo_sg.id]
+  vpc_security_group_ids = [aws_security_group.my_pvt_sg.id]
   instance_count         = 2
   subnet_ids             = data.aws_subnets.default_vpc_subnets.ids
   openai_api_key         = var.openai_api_key
 }
 
-# Get all subnets in the default VPC
+# Get all subnets ids in the default VPC
 data "aws_subnets" "default_vpc_subnets" {
   filter {
     name   = "vpc-id"
     values = [aws_default_vpc.default.id]
   }
-}
-
-data "aws_subnet" "subnet_details" {
-  count = length(data.aws_subnets.default_vpc_subnets.ids)
-  id    = data.aws_subnets.default_vpc_subnets.ids[count.index]
 }
 
 resource "aws_security_group" "alb" {
@@ -90,22 +85,22 @@ resource "aws_lb_target_group_attachment" "app" {
 resource "aws_default_vpc" "default" {
 }
 
-resource "aws_security_group" "demo_sg" {
-  name   = "demo-sg"
+resource "aws_security_group" "my_pvt_sg" {
+  name   = "my_pvt_sg"
   vpc_id = aws_default_vpc.default.id
 
   ingress {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.subnet_details : s.cidr_block]
+    cidr_blocks = [aws_default_vpc.default.cidr_block]
   }
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.subnet_details : s.cidr_block]
+    cidr_blocks = [aws_default_vpc.default.cidr_block]
   }
   egress {
     from_port   = 0

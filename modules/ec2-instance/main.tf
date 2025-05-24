@@ -9,8 +9,7 @@ resource "aws_instance" "aws_ubuntu" {
   subnet_id          = element(var.subnet_ids, count.index % length(var.subnet_ids))
 
   user_data =  templatefile("${path.module}/files/user_data.sh.tmpl", {
-    python_app = file("${path.module}/files/app.py")
-    openai_key = "${var.openai_api_key}"
+    openai_api_key = "${var.openai_api_key}"
   })
 
   tags = {

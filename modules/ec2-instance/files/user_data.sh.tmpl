@@ -1,11 +1,10 @@
 #!/bin/bash
-apt update -y
-apt install -y python3 python3-pip
-pip3 install flask openai
+apt-get update -y
+apt-get install -y docker.io
+systemctl enable docker
+systemctl start docker
+usermod -aG docker ubuntu
 
-export OPENAI_API_KEY="${openai_key}"
-cat > ~/app.py <<'EOF'
-${python_app}
-EOF
-
-python3 ~/app.py &
+docker pull juinnpt/ai-page-generator:latest
+docker run -d -p 8080:8080 -e OPENAI_API_KEY=${openai_api_key} juinnpt/ai-page-generator
+  
