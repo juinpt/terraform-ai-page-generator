@@ -102,11 +102,10 @@ terraform-ai-page-generator/
 
 Each EC2 instance is configured to:
 
-- Install necessary dependencies (e.g., Python, required libraries).
-- Deploy the AI page generator application.
-- Expose the application on a specified port (e.g., port 80).
+- Install necessary dependencies (e.g., Docker).
+- Deploy the containerized AI page generator application.
+- Expose the application on a specified port (e.g., port 8080).
 
-Ensure your security group allows inbound traffic on the chosen application port.
 
 ## License
 
