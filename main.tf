@@ -25,7 +25,7 @@ resource "aws_security_group" "alb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP from anywhere
+    cidr_blocks = ["0.0.0.0/0"] # Allow HTTP from anywhere
   }
 
   egress {
@@ -41,7 +41,7 @@ resource "aws_lb" "app" {
   load_balancer_type = "application"
   internal           = false
   security_groups    = [aws_security_group.alb.id]
-  subnets	     = data.aws_subnets.default_vpc_subnets.ids
+  subnets            = data.aws_subnets.default_vpc_subnets.ids
 }
 
 
@@ -54,7 +54,7 @@ resource "aws_lb_target_group" "app" {
   health_check {
     path                = "/"
     protocol            = "HTTP"
-    port		= 8080
+    port                = 8080
     matcher             = "200"
     interval            = 30
     timeout             = 5
@@ -75,7 +75,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_lb_target_group_attachment" "app" {
-  count            = length(module.web_instance.instance_ids) 
+  count            = length(module.web_instance.instance_ids)
   target_group_arn = aws_lb_target_group.app.arn
   target_id        = module.web_instance.instance_ids[count.index]
   port             = 8080
