@@ -89,9 +89,6 @@ terraform-ai-page-generator/
 ├── outputs.tf
 ├── providers.tf
 ├── README.md
-├── terraform.tfstate
-├── terraform.tfstate.backup
-├── terraform.tfvars
 └── variables.tf
 ```
 
