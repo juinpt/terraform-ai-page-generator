@@ -1,6 +1,8 @@
 name: 'Terraform Destroy'
 
 on:
+  schedule:
+    - cron: '0 21 * * *'  # 9PM UTC - 6AM JST
   workflow_dispatch:
 
 permissions:
@@ -28,5 +30,8 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+    - name: Terraform Init
+      run: terraform init -input=false
+      
     - name: Terraform Destroy
       run: terraform destroy -auto-approve -input=false
