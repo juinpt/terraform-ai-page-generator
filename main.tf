@@ -110,3 +110,15 @@ resource "aws_security_group" "my_pvt_sg" {
   }
 }
 
+
+
+
+#For GitHub Actions Workflow
+terraform {
+  backend "remote" {
+    organization = "juinpt"
+    workspaces {
+      name = "terraform-ai-page-generator"
+    }
+  }
+}
