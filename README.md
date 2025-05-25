@@ -96,7 +96,7 @@ terraform-ai-page-generator/
 
 - **EC2 Instances**: Virtual servers to host the AI page generator application. Each instance is placed in a separate Availability Zone.
 - **Security Group**: Defines inbound and outbound rules for the EC2 instances.
-- **IAM Role (if applicable)**: Grants necessary permissions to the EC2 instances.
+- **Application Load Balancer**: Distributes incoming HTTP traffic across multiple EC2 instances to ensure scalability and fault tolerance. Configured with target groups and health checks.
 
 ## Application Deployment
 
