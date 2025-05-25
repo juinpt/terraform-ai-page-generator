@@ -57,6 +57,9 @@ jobs:
     name: 'Terraform Deploy'
     runs-on: ubuntu-latest
     environment: production
+    env:
+      TF_VAR_aws_region: ${{ secrets.AWS_DEFAULT_REGION }}
+      TF_VAR_openai_api_key: ${{ secrets.OPENAI_API_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -96,9 +99,6 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
-      env:
-        TF_VAR_aws_region: ${{ secrets.AWS_DEFAULT_REGION }}
-        TF_VAR_openai_api_key: ${{ secrets.OPENAI_API_KEY }}
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
