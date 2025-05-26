@@ -1,10 +1,10 @@
 # Creates var.instance_count EC2 instances on different subnets 
 module "web_instance" {
   source                 = "./modules/ec2-instance"
-  instance_type          = "t2.micro"
-  ami                    = "ami-0f415cc2783de6675"
+  instance_type          = var.instance_type
+  ami                    = var.ami
   vpc_security_group_ids = [aws_security_group.my_pvt_sg.id]
-  instance_count         = 2
+  instance_count         = var.instance_count
   subnet_ids             = data.aws_subnets.default_vpc_subnets.ids
   openai_api_key         = var.openai_api_key
   name_prefix            = "ai-page-gen"
