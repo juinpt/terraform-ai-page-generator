@@ -7,6 +7,7 @@ module "web_instance" {
   instance_count         = 2
   subnet_ids             = data.aws_subnets.default_vpc_subnets.ids
   openai_api_key         = var.openai_api_key
+  name_prefix            = "ai-page-gen"
 }
 
 # Get all subnets ids in the default VPC
