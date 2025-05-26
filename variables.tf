@@ -11,10 +11,16 @@ variable "aws_region" {
 
 variable "ami" {
   type        = string
-  description = "The AMI for the provisioned EC2 instances; must be ubuntu"
+  description = "The AMI for the EC2 instances; must be ubuntu"
 }
 
 variable "instance_type" {
   type    = string
   default = "t2.micro" 
+}
+
+variable "instance_type" {
+  type        = string
+  default     = "t2.micro"
+  description = "EC2 instance type"
 }
