@@ -14,9 +14,9 @@ variable "ami" {
   description = "The AMI for the EC2 instances; must be ubuntu"
 }
 
-variable "instance_type" {
-  type    = string
-  default = "t2.micro" 
+variable "instance_count" {
+  type    = number
+  default = 2
 }
 
 variable "instance_type" {
