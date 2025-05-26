@@ -26,7 +26,7 @@ variable "instance_count" {
 
 variable "name_prefix" {
   type        = string
-  default     = "ai-page-gen"
+  default     = "ec2"
 }
 
 variable "openai_api_key" {
