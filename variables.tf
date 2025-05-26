@@ -8,3 +8,13 @@ variable "aws_region" {
   default     = "ap-northeast-1"
   description = "AWS Region"
 }
+
+variable "ami" {
+  type        = string
+  description = "The AMI for the provisioned EC2 instances; must be ubuntu"
+}
+
+variable "instance_type" {
+  type    = string
+  default = "t2.micro" 
+}
