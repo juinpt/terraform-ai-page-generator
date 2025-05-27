@@ -1,8 +1,8 @@
 name: 'Terraform Destroy'
 
 on:
-  schedule:
-    - cron: '0 21 * * *'  # 9PM UTC - 6AM JST
+  #schedule:
+  #  - cron: '0 21 * * *'  # 9PM UTC - 6AM JST
   workflow_dispatch:
 
 permissions:
